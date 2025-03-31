@@ -1,5 +1,5 @@
 {
-  description = "Flake Tempaltes";
+  description = "Default Flake";
 
   inputs = {
     # keep-sorted start block=yes
@@ -94,16 +94,6 @@
           [ flake-parts.flakeModules.easyOverlay ]
           ++ lib.optionals (inputs.pre-commit-hooks ? flakeModule) [ inputs.pre-commit-hooks.flakeModule ]
           ++ lib.optionals (inputs.treefmt-nix ? flakeModule) [ inputs.treefmt-nix.flakeModule ];
-
-        flake = {
-          templates = {
-            trivial = {
-              path = ./trivial;
-              description = "A basic flake template";
-            };
-          };
-          defaultTemplate = "trivial";
-        };
 
         perSystem =
           {
