@@ -124,8 +124,7 @@
                   }
                 }/share/zsh/site-functions";
                 packages = with pkgs; [
-                  nil
-                  efm-langserver
+                  hello
                 ];
                 inputsFrom = [
                   config.pre-commit.devShell

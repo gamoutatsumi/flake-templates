@@ -133,10 +133,6 @@
                     pathsToLink = [ "/share/zsh" ];
                   }
                 }/share/zsh/site-functions";
-                packages = with pkgs; [
-                  nil
-                  efm-langserver
-                ];
                 inputsFrom = [
                   config.pre-commit.devShell
                   treefmtBuild.devShell
