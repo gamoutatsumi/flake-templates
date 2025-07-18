@@ -158,6 +158,9 @@
                       treefmt = treefmtBuild.wrapper;
                     };
                   };
+                  actionlint = {
+                    enable = true;
+                  };
                   # keep-sorted end
                 };
               };
@@ -174,10 +177,16 @@
                 keep-sorted = {
                   enable = true;
                 };
+                mdformat = {
+                  enable = true;
+                };
                 nixfmt = {
                   enable = true;
                 };
                 statix = {
+                  enable = true;
+                };
+                yamlfmt = {
                   enable = true;
                 };
                 # keep-sorted end
