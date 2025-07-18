@@ -99,7 +99,7 @@
                   enable = true;
                   passwordCommand = {
                     GITHUB_PERSONAL_ACCESS_TOKEN = [
-                      "gh"
+                      (lib.getExe pkgs.gh)
                       "auth"
                       "token"
                     ];
