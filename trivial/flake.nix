@@ -45,16 +45,13 @@
       };
     };
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-24.11";
-    };
-    nixpkgs-unstable = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz";
     };
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
         nixpkgs = {
-          follows = "nixpkgs-unstable";
+          follows = "nixpkgs";
         };
         flake-compat = {
           follows = "flake-compat";
@@ -85,21 +82,21 @@
     flake-parts.lib.mkFlake { inherit inputs; } (
       {
         inputs,
-        lib,
         ...
       }:
       {
         systems = import systems;
-        imports =
-          [ flake-parts.flakeModules.easyOverlay ]
-          ++ lib.optionals (inputs.pre-commit-hooks ? flakeModule) [ inputs.pre-commit-hooks.flakeModule ]
-          ++ lib.optionals (inputs.treefmt-nix ? flakeModule) [ inputs.treefmt-nix.flakeModule ];
+        imports = [
+          inputs.pre-commit-hooks.flakeModule
+          inputs.treefmt-nix.flakeModule
+        ];
 
         perSystem =
           {
             system,
             pkgs,
             config,
+            inputs',
             ...
           }:
           let
@@ -108,7 +105,7 @@
           {
             _module = {
               args = {
-                pkgs = import inputs.nixpkgs-unstable {
+                pkgs = import inputs.nixpkgs {
                   inherit system;
                   config = {
                     allowUnfree = true;
@@ -130,13 +127,12 @@
                   nil
                   efm-langserver
                 ];
-                inputsFrom =
-                  lib.optionals (inputs.pre-commit-hooks ? flakeModule) [ config.pre-commit.devShell ]
-                  ++ lib.optionals (inputs.treefmt-nix ? flakeModule) [ treefmtBuild.devShell ];
+                inputsFrom = [
+                  config.pre-commit.devShell
+                  treefmtBuild.devShell
+                ];
               };
             };
-          }
-          // lib.optionalAttrs (inputs.pre-commit-hooks ? flakeModule) {
             pre-commit = {
               check = {
                 enable = true;
@@ -145,9 +141,9 @@
                 src = ./.;
                 hooks = {
                   # keep-sorted start block=yes
-                  flake-checker = lib.optionalAttrs (inputs.flake-checker ? packages) {
+                  flake-checker = {
                     enable = true;
-                    package = flake-checker.packages.${system}.flake-checker;
+                    package = inputs'.flake-checker.packages.flake-checker;
                   };
                   treefmt = {
                     enable = true;
@@ -159,8 +155,6 @@
                 };
               };
             };
-          }
-          // lib.optionalAttrs (inputs.treefmt-nix ? flakeModule) {
             formatter = treefmtBuild.wrapper;
             treefmt = {
               projectRootFile = "flake.nix";
