@@ -3,30 +3,13 @@
 
   inputs = {
     # keep-sorted start block=yes
-    fenix = {
-      url = "https://flakehub.com/f/nix-community/fenix/0.1.*";
-      inputs = {
-        nixpkgs = {
-          follows = "nixpkgs";
-        };
-      };
-    };
     flake-checker = {
       url = "github:DeterminateSystems/flake-checker";
       inputs = {
         nixpkgs = {
           follows = "nixpkgs";
         };
-        fenix = {
-          follows = "fenix";
-        };
-        naersk = {
-          follows = "naersk";
-        };
       };
-    };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -36,8 +19,8 @@
         };
       };
     };
-    naersk = {
-      url = "https://flakehub.com/f/nix-community/naersk/0.1.*";
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
       inputs = {
         nixpkgs = {
           follows = "nixpkgs";
@@ -52,9 +35,6 @@
       inputs = {
         nixpkgs = {
           follows = "nixpkgs";
-        };
-        flake-compat = {
-          follows = "flake-compat";
         };
       };
     };

@@ -3,6 +3,7 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
+          "flake-checker",
           "nixpkgs"
         ],
         "rust-analyzer-src": "rust-analyzer-src"
@@ -22,12 +23,8 @@
     },
     "flake-checker": {
       "inputs": {
-        "fenix": [
-          "fenix"
-        ],
-        "naersk": [
-          "naersk"
-        ],
+        "fenix": "fenix",
+        "naersk": "naersk",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -47,12 +44,13 @@
       }
     },
     "flake-compat": {
+      "flake": false,
       "locked": {
-        "lastModified": 1733328505,
-        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
+        "lastModified": 1747046372,
+        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
+        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
         "type": "github"
       },
       "original": {
@@ -102,19 +100,40 @@
         "type": "github"
       }
     },
-    "naersk": {
+    "mcp-servers-nix": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1742901344,
-        "narHash": "sha256-o9dXcpfXpBm6+/SRqcQW0GzRkJymwyEAu5UD5LMDd3s=",
-        "rev": "a75c0584b0d69de943babc899530e9c70c642b42",
-        "revCount": 354,
+        "lastModified": 1752803893,
+        "narHash": "sha256-SUdLJyvZfTVzbK8hBVPWN5KNYo0A13EewnBW7Hbz3i8=",
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "rev": "9223429b184c6eaf14d6c7169234973d3ce4dd51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "natsukium",
+        "repo": "mcp-servers-nix",
+        "type": "github"
+      }
+    },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "flake-checker",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752491160,
+        "narHash": "sha256-2a6LNUE0QW8AszyHduvwOriis2Me/nFhr5jf/aKsUXs=",
+        "rev": "b11bd3e2d433f5bfb1c4f06128edcfc7adfaaa22",
+        "revCount": 366,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/naersk/0.1.354%2Brev-a75c0584b0d69de943babc899530e9c70c642b42/0195cd05-5b25-7773-919c-b9b6f3ef3e09/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/naersk/0.1.366%2Brev-b11bd3e2d433f5bfb1c4f06128edcfc7adfaaa22/01980a05-638f-7c5c-b035-d017e3e3b4e0/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -136,9 +155,7 @@
     },
     "pre-commit-hooks": {
       "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
+        "flake-compat": "flake-compat",
         "gitignore": "gitignore",
         "nixpkgs": [
           "nixpkgs"
@@ -160,11 +177,9 @@
     },
     "root": {
       "inputs": {
-        "fenix": "fenix",
         "flake-checker": "flake-checker",
-        "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
-        "naersk": "naersk",
+        "mcp-servers-nix": "mcp-servers-nix",
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "systems": "systems",
